@@ -1,0 +1,170 @@
+<%- include('../partials/header') %>
+
+<div class="auth-page">
+  <div class="container">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h2>创建账号</h2>
+          <p>加入BedroomStyler，开始设计您的理想卧室</p>
+        </div>
+        
+        <% if (error) { %>
+          <div class="alert alert-danger">
+            <%= error %>
+          </div>
+        <% } %>
+        
+        <form action="/auth/register" method="POST" class="auth-form">
+          <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">电子邮箱</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password" required>
+            <div class="password-strength-meter">
+              <div class="meter-bg"></div>
+              <div class="meter"></div>
+            </div>
+            <small>密码至少需要8个字符，包含字母、数字和特殊字符</small>
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">确认密码</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+          </div>
+          
+          <div class="form-check">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+            <label for="agreeTerms">我同意 <a href="/terms" target="_blank">服务条款</a> 和 <a href="/privacy" target="_blank">隐私政策</a></label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block">注册</button>
+        </form>
+        
+        <div class="auth-footer">
+          <p>已有账号? <a href="/auth/login">登录</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .auth-page {
+    padding: 3rem 0;
+    min-height: calc(100vh - 300px);
+    display: flex;
+    align-items: center;
+  }
+  
+  .auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .auth-card {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+  }
+  
+  .auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-header h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .auth-header p {
+    color: var(--secondary-color);
+  }
+  
+  .auth-form .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .auth-form input[type="text"],
+  .auth-form input[type="email"],
+  .auth-form input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .auth-form input:focus {
+    border-color: var(--primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+  }
+  
+  .auth-form small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--secondary-color);
+  }
+  
+  .password-strength-meter {
+    height: 4px;
+    background-color: var(--border-color);
+    margin-top: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  
+  .password-strength-meter .meter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--danger-color);
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .btn-block {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .auth-footer p {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 576px) {
+    .auth-card {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<%- include('../partials/footer') %> 

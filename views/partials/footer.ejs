@@ -1,0 +1,53 @@
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="8" fill="#3B82F6"/>
+            <path d="M12 36V12H36V18H18V36H12Z" fill="white"/>
+            <path d="M24 24H36V36H24V24Z" fill="white"/>
+          </svg>
+          <span>BedroomStyler</span>
+        </div>
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>产品</h4>
+            <ul>
+              <li><a href="/design">设计卧室</a></li>
+              <li><a href="/gallery">设计展示</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>支持</h4>
+            <ul>
+              <li><a href="/help">帮助中心</a></li>
+              <li><a href="/faq">常见问题</a></li>
+              <li><a href="/contact">联系我们</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>关于</h4>
+            <ul>
+              <li><a href="/about">关于我们</a></li>
+              <li><a href="/privacy">隐私政策</a></li>
+              <li><a href="/terms">使用条款</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <%= new Date().getFullYear() %> BedroomStyler. 保留所有权利。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <% if (typeof scripts !== 'undefined' && scripts.length > 0) { %>
+    <% scripts.forEach(function(script) { %>
+      <script src="<%= script %>"></script>
+    <% }); %>
+  <% } %>
+</body>
+</html> 

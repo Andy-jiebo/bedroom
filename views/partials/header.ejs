@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="卧室设计工具 - 轻松设计您的理想卧室">
+  <meta name="keywords" content="卧室设计,家具摆放,3D效果图,室内设计">
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <% if (typeof styles !== 'undefined' && styles.length > 0) { %>
+    <% styles.forEach(function(style) { %>
+      <link rel="stylesheet" href="<%= style %>">
+    <% }); %>
+  <% } %>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="/">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="8" fill="#3B82F6"/>
+            <path d="M12 36V12H36V18H18V36H12Z" fill="white"/>
+            <path d="M24 24H36V36H24V24Z" fill="white"/>
+          </svg>
+          <span>BedroomStyler</span>
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">首页</a></li>
+          <li><a href="/design">设计卧室</a></li>
+          <li><a href="/gallery">设计展示</a></li>
+          <% if (typeof user !== 'undefined' && user) { %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"><%= user.username %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if (user.role === 'admin') { %>
+                  <li><a href="/admin">管理后台</a></li>
+                <% } %>
+                <li><a href="/design/my-designs">我的设计</a></li>
+                <li><a href="/user/profile">个人资料</a></li>
+                <li><a href="/auth/logout">退出登录</a></li>
+              </ul>
+            </li>
+          <% } else { %>
+            <li><a href="/auth/login">登录</a></li>
+            <li><a href="/auth/register" class="btn-primary">注册</a></li>
+          <% } %>
+        </ul>
+      </nav>
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main> 

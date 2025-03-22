@@ -1,0 +1,222 @@
+{
+  "asset": {
+    "generator": "Bedroom App GLTF Exporter",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [0]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Desk",
+      "children": [1, 2, 3],
+      "matrix": [1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0]
+    },
+    {
+      "name": "DeskTop",
+      "mesh": 0,
+      "translation": [0, 0.75, 0]
+    },
+    {
+      "name": "DeskLegs",
+      "mesh": 1,
+      "translation": [0, 0, 0]
+    },
+    {
+      "name": "DeskDrawer",
+      "mesh": 2,
+      "translation": [0, 0.6, 0.2]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "DeskTop",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "DeskLegs",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 3,
+            "NORMAL": 4
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "DeskDrawer",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 6,
+            "NORMAL": 7
+          },
+          "indices": 8,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 24,
+      "max": [0.8, 0.05, 0.4],
+      "min": [-0.8, -0.05, -0.4],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 40,
+      "max": [0.78, 0.75, 0.38],
+      "min": [-0.78, 0.0, -0.38],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 40,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5123,
+      "count": 60,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 24,
+      "max": [0.4, 0.1, 0.02],
+      "min": [-0.4, -0.1, -0.02],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 8,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    }
+  ],
+  "materials": [
+    {
+      "name": "DeskTop",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.5451, 0.2706, 0.0745, 1.0],
+        "metallicFactor": 0.1,
+        "roughnessFactor": 0.8
+      }
+    },
+    {
+      "name": "DeskLegs",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.4196, 0.2588, 0.149, 1.0],
+        "metallicFactor": 0.2,
+        "roughnessFactor": 0.7
+      }
+    },
+    {
+      "name": "DeskDrawer",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.6275, 0.3216, 0.1765, 1.0],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9
+      }
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 288
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 576
+    },
+    {
+      "buffer": 0,
+      "byteLength": 480,
+      "byteOffset": 648
+    },
+    {
+      "buffer": 0,
+      "byteLength": 480,
+      "byteOffset": 1128
+    },
+    {
+      "buffer": 0,
+      "byteLength": 120,
+      "byteOffset": 1608
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1728
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 2016
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 2304
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 2376,
+      "uri": "data:application/octet-stream;base64,AACAPwAAAD8AAIA/AACAPwAAAD8AAIC/AACAPwAAAL8AAIC/AACAPwAAAL8AAIA/AACAvwAAAD8AAIA/AACAvwAAAL8AAIA/AACAvwAAAL8AAIC/AACAvwAAAD8AAIC/AACAPwAAAD8AAIA/AACAvwAAAD8AAIA/AACAvwAAAD8AAIC/AACAPwAAAD8AAIC/AACAvwAAAL8AAIA/AACAPwAAAL8AAIA/AACAPwAAAL8AAIC/AACAvwAAAL8AAIC/AACAPwAAAD8AAIC/AACAvwAAAD8AAIC/AACAvwAAAL8AAIC/AACAPwAAAL8AAIC/AACAvwAAAD8AAIA/AACAPwAAAD8AAIA/AACAPwAAAL8AAIA/AACAvwAAAL8AAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAQADAAIAAgADAAQACQALAAoACgALAAwABQAHAAYABgAHAAgADQAPAA4ADgAPABAAFQAXABYAFgAXABgAEQATABIAEgATABQAFQAXABYAFgAXABgAGQAbABoAGgAbABwAHQAfAB4AHgAfACAAIQAjACIAIgAjACQAJQAnACYAJgAnACgAKQArACoAKgArACwALQAvAC4ALgAvADAAMQAzADIAMgAzADQANQA3ADYANgA3ADgAOQA7ADoAOgA7ADwAPQA/AD4APgA/AEAAAAAAPwAAAD8AAAA+AAAAD/AAAj8AAAA+AAAADwAAAL8AAAA+AAAAv/AAAj8AAAA+AAAAv/AAAj8AAAA+AAAAvwAAAL8AAAA+AAAAD/AAAj8AAAA+AAAAvwAAAL8AAAA+AAAAvwAAAL8AAACAAAAAvwAAAD8AAAA+AAAAvwAAAD8AAACAAAAAD/AAAj8AAAA+AAAAD/AAAj8AAACAAAAAD/AAAj8AAACAAAAAD/AAAj8AAAA+AAAAPwAAAD8AAAA+AAAAPwAAAD8AAACAAAAAD/AAAj8AAAA+AAAAPwAAAD8AAAA+AAAAD/AAAj8AAAA+AAAAPwAAAD8AAACAAAAAD/AAAj8AAACAAAAAD/AAAj8AAACAAAAAD/AAAj8AAAA+AAAAvwAAAD8AAAA+AAAAvwAAAD8AAACAAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAQADAAIAAgADAAQACQALAAoACgALAAwABQAHAAYABgAHAAgADQAPAA4ADgAPABAAFQAXABYAFgAXABgAEQATABIAEgATABQA"
+    }
+  ]
+} 

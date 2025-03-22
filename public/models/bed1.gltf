@@ -1,0 +1,214 @@
+{
+  "asset": {
+    "generator": "Bedroom App GLTF Exporter",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [0]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Bed",
+      "children": [1, 2, 3],
+      "matrix": [1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0]
+    },
+    {
+      "name": "BedFrame",
+      "mesh": 0,
+      "translation": [0, 0.2, 0]
+    },
+    {
+      "name": "Mattress",
+      "mesh": 1,
+      "translation": [0, 0.3, 0]
+    },
+    {
+      "name": "Headboard",
+      "mesh": 2,
+      "translation": [0, 0.5, -0.9]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "BedFrame",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Mattress",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 3,
+            "NORMAL": 4
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Headboard",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 6,
+            "NORMAL": 7
+          },
+          "indices": 8,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 24,
+      "max": [1.0, 0.2, 1.0],
+      "min": [-1.0, 0.0, -1.0],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 24,
+      "max": [0.95, 0.15, 0.95],
+      "min": [-0.95, 0.0, -0.95],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 24,
+      "max": [1.0, 0.6, 0.1],
+      "min": [-1.0, 0.0, -0.1],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 8,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    }
+  ],
+  "materials": [
+    {
+      "name": "WoodMaterial",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.5451, 0.2706, 0.0745, 1.0],
+        "metallicFactor": 0.1,
+        "roughnessFactor": 0.8
+      }
+    },
+    {
+      "name": "MattressMaterial",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.9, 0.9, 0.95, 1.0],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9
+      }
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 288
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 576
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 648
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 936
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 1224
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1296
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1584
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 1872
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1944,
+      "uri": "data:application/octet-stream;base64,AACAPwAAgD8AAIA/AACAPwAAgD8AAIC/AACAPwAAAAAAAAC/AACAPwAAAAAAAAA/AACAvwAAgD8AAIA/AACAvwAAAAAAAAA/AACAvwAAAAAAAAC/AACAvwAAgD8AAIC/AACAPwAAgD8AAIA/AACAvwAAgD8AAIA/AACAvwAAgD8AAIC/AACAPwAAgD8AAIC/AACAvwAAAAAAAAA/AACAPwAAAAAAAAA/AACAPwAAAAAAAAC/AACAvwAAAAAAAAC/AACAPwAAgD8AAIC/AACAvwAAgD8AAIC/AACAvwAAAAAAAAC/AACAPwAAAAAAAAC/AACAvwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAAAAAAAA/AACAvwAAAAAAAAA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAQADAAIAAgADAAQACQALAAoACgALAAwABQAHAAYABgAHAAgADQAPAA4ADgAPABAAFQAXABYAFgAXABgAEQATABIAEgATABQAnTIzPwAAYD+dMjM/nTIzPwAAYD+dMjO/nTIzPwAAAAAAAMC+nTIzPwAAAAAAAMA+nTIzvwAAYD+dMjM/nTIzvwAAAAAAAMA+nTIzvwAAAAAAAMC+nTIzvwAAYD+dMjO/nTIzPwAAYD+dMjM/nTIzvwAAYD+dMjM/nTIzvwAAYD+dMjO/nTIzPwAAYD+dMjO/nTIzvwAAAAAAAMA+nTIzPwAAAAAAAMA+nTIzPwAAAAAAAMC+nTIzvwAAAAAAAMC+nTIzPwAAYD+dMjO/nTIzvwAAYD+dMjO/nTIzvwAAAAAAAMC+nTIzPwAAAAAAAMC+nTIzvwAAYD+dMjM/nTIzPwAAYD+dMjM/nTIzPwAAAAAAAMA+nTIzvwAAAAAAAMA+AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAQADAAIAAgADAAQACQALAAoACgALAAwABQAHAAYABgAHAAgADQAPAA4ADgAPABAAFQAXABYAFgAXABgAEQATABIAEgATABQAAACAPwAAwD8AAIA/AACAPwAAwD8AAIC/AACAPwAAAAAAAAC/AACAPwAAAAAAAAA/AACAvwAAwD8AAIA/AACAvwAAAAAAAAA/AACAvwAAAAAAAAC/AACAvwAAwD8AAIC/AACAPwAAwD8AAIA/AACAvwAAwD8AAIA/AACAvwAAwD8AAIC/AACAPwAAwD8AAIC/AACAvwAAAAAAAAA/AACAPwAAAAAAAAA/AACAPwAAAAAAAAC/AACAvwAAAAAAAAC/AACAPwAAwD8AAIC/AACAvwAAwD8AAIC/AACAvwAAAAAAAAC/AACAPwAAAAAAAAC/AACAvwAAwD8AAIA/AACAPwAAwD8AAIA/AACAPwAAAAAAAAA/AACAvwAAAAAAAAA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAACAvwAAAAAAAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAAAAAAAAgL8AAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAQADAAIAAgADAAQACQALAAoACgALAAwABQAHAAYABgAHAAgADQAPAA4ADgAPABAAFQAXABYAFgAXABgAEQATABIAEgATABQA"
+    }
+  ]
+} 

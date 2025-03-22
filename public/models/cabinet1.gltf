@@ -1,0 +1,189 @@
+{
+  "asset": {
+    "generator": "Bedroom App GLTF Exporter",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [0]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Cabinet",
+      "children": [1, 2],
+      "matrix": [
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0
+      ]
+    },
+    {
+      "name": "CabinetBody",
+      "mesh": 0,
+      "translation": [0, 0.5, 0]
+    },
+    {
+      "name": "CabinetDoors",
+      "mesh": 1,
+      "translation": [0, 0.5, 0.3]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "CabinetBody",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "CabinetDoors",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 3,
+            "NORMAL": 4
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 24,
+      "max": [0.6, 1.4, 0.4],
+      "min": [-0.6, 0.0, -0.4],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 24,
+      "max": [-0.01, 1.35, 0.39],
+      "min": [-0.59, 0.05, 0.01],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 24,
+      "max": [0.59, 1.35, 0.39],
+      "min": [0.01, 0.05, 0.01],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 8,
+      "componentType": 5123,
+      "count": 36,
+      "type": "SCALAR"
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [0.55, 0.43, 0.38, 1.0],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.6
+      },
+      "name": "WoodMaterial"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 288
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 576
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 648
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 936
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 1224
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1296
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1584
+    },
+    {
+      "buffer": 0,
+      "byteLength": 72,
+      "byteOffset": 1872
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "data:application/octet-stream;base64,AACAv0AAAAAAAIBAAAAgQAAAAAAAAIBAAACAvwAAwEAAAIBAAAAgQAAAwEAAAIBAAACAvwAAAAAAAIC/AAAgQAAAAAAAAIC/AACAvwAAwEAAAIC/AAAgQAAAwEAAAIC/AACAvwAAAAAAAIBAAAAAgQAAAAAAAAIBAAACAv0AAwEAAAIBAAAAAgQAAwEAAAIBAAACAv0AAwEAAAIBAAAAAgQAAwEAAAIBAAAAAgQAAwEAAAIC/AACAv0AAwEAAAIC/AACAv0AAwEAAAIC/AAAgQAAAwEAAAIC/AAAgQAAAAAAAAIC/AACAv0AAAAAAAIC/AACAv0AAAAAAAIC/AACAv0AAAAAAAIBAAAAAgQAAAAAAAAIBAAACgQAAAAAAAAIC/AACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAzcxcwgAAIEDNzLxAzcxcwgAAxkDNzLxAzbz9vwAAxkDNzLxAzbz9vwAAIEDNzLxAzcxcwgAAIEAAADA/zcxcwgAAxkAAADA/zbz9vwAAxkAAADA/zbz9vwAAIEAAADA/zcxcwgAAIEDNzLxAzcxcwgAAIEAAADA/zcxcwgAAxkAAADA/zcxcwgAAxkDNzLxAzcxcwgAAxkDNzLxAzcxcwgAAxkAAADA/zbz9vwAAxkAAADA/zbz9vwAAxkDNzLxAzbz9vwAAxkDNzLxAzbz9vwAAxkAAADA/zbz9vwAAIEAAADA/zbz9vwAAIEDNzLxAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAACAAMABAAFAAYAEAAGAAUABwAIAAkAEQAJAAgACgALAAwAEgAMAAsADQAOAA8AEwAPAA4AFAAVABYAFAAWABcAM7NRQgAAIEDNzLxAM7NRQgAAxkDNzLxAM7N5PwAAxkDNzLxAM7N5PwAAIEDNzLxAM7NRQgAAIEAAADA/M7NRQgAAxkAAADA/M7N5PwAAxkAAADA/M7N5PwAAIEAAADA/M7NRQgAAIEDNzLxAM7NRQgAAIEAAADA/M7NRQgAAxkAAADA/M7NRQgAAxkDNzLxAM7NRQgAAxkDNzLxAM7NRQgAAxkAAADA/M7N5PwAAxkAAADA/M7N5PwAAxkDNzLxAM7N5PwAAxkDNzLxAM7N5PwAAxkAAADA/M7N5PwAAIEAAADA/M7N5PwAAIEDNzLxAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAAAACAAMABAAFAAYAEAAGAAUABwAIAAkAEQAJAAgACgALAAwAEgAMAAsADQAOAA8AEwAPAA4AFAAVABYAFAAWABcA",
+      "byteLength": 1944
+    }
+  ]
+} 

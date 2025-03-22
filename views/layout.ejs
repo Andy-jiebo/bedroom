@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/7605/7605169.png" type="image/png">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <% if (typeof styles !== 'undefined' && styles.length > 0) { %>
+    <% styles.forEach(function(style) { %>
+      <link rel="stylesheet" href="<%= style %>">
+    <% }); %>
+  <% } %>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="/">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="8" fill="#3B82F6"/>
+            <path d="M12 36V12H36V18H18V36H12Z" fill="white"/>
+            <path d="M24 24H36V36H24V24Z" fill="white"/>
+          </svg>
+          <span>BedroomStyler</span>
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">首页</a></li>
+          <li><a href="/design">设计卧室</a></li>
+          <li><a href="/gallery">设计展示</a></li>
+          <% if (typeof user !== 'undefined' && user) { %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"><%= user.username %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if (user.role === 'admin') { %>
+                  <li><a href="/admin">管理后台</a></li>
+                <% } %>
+                <li><a href="/design/my-designs">我的设计</a></li>
+                <li><a href="/user/profile">个人资料</a></li>
+                <li><a href="/auth/logout">退出登录</a></li>
+              </ul>
+            </li>
+          <% } else { %>
+            <li><a href="/auth/login">登录</a></li>
+            <li><a href="/auth/register" class="btn-primary">注册</a></li>
+          <% } %>
+        </ul>
+      </nav>
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <%- body %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="8" fill="#3B82F6"/>
+            <path d="M12 36V12H36V18H18V36H12Z" fill="white"/>
+            <path d="M24 24H36V36H24V24Z" fill="white"/>
+          </svg>
+          <span>BedroomStyler</span>
+        </div>
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>产品</h4>
+            <ul>
+              <li><a href="/design">设计卧室</a></li>
+              <li><a href="/gallery">设计展示</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>支持</h4>
+            <ul>
+              <li><a href="/help">帮助中心</a></li>
+              <li><a href="/faq">常见问题</a></li>
+              <li><a href="/contact">联系我们</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>关于</h4>
+            <ul>
+              <li><a href="/about">关于我们</a></li>
+              <li><a href="/privacy">隐私政策</a></li>
+              <li><a href="/terms">使用条款</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <%= new Date().getFullYear() %> BedroomStyler. 保留所有权利。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <% if (typeof scripts !== 'undefined' && scripts.length > 0) { %>
+    <% scripts.forEach(function(script) { %>
+      <script src="<%= script %>"></script>
+    <% }); %>
+  <% } %>
+</body>
+</html> 

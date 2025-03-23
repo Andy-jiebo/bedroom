@@ -15,6 +15,7 @@
   </script>
   <style>
     /* 调试面板样式 */
+    /*
     #debug-panel {
       position: fixed;
       top: 70px;
@@ -64,10 +65,12 @@
     #debug-panel button:hover {
       background: #3a56d4;
     }
+    */
   </style>
 </head>
 <body>
   <!-- 调试面板 -->
+  <!--
   <div id="debug-panel">
     <h3>Three.js 调试面板</h3>
     <div class="section">
@@ -115,6 +118,7 @@
       <button id="debug-toggle-axes">显示/隐藏轴</button>
     </div>
   </div>
+  -->
 
   <div class="editor-container">
     <!-- 顶部工具栏 -->
@@ -170,9 +174,11 @@
       <div class="canvas-container">
         <canvas id="design-canvas"></canvas>
         <!-- 画布测试标记 -->
+        <!--
         <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.7); padding: 5px; border-radius: 3px; pointer-events: none;">
           画布测试区域
         </div>
+        -->
       </div>
       
       <!-- 属性面板 (右侧) -->
@@ -348,6 +354,7 @@
   
   <!-- 调试脚本 -->
   <script>
+    /*
     document.addEventListener('DOMContentLoaded', function() {
       // 设置初始调试面板状态
       updateDebugInfo();
@@ -447,6 +454,7 @@
         console.log('已添加坐标轴');
       }
     }
+    */
   </script>
 </body>
 </html> 

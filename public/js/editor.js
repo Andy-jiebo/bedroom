@@ -151,7 +151,7 @@ function initEditor() {
     createRoom();
     
     // 添加测试立方体
-    addTestCube();
+    // addTestCube(); // 注释掉测试立方体
     
     // 隐藏加载中
     document.querySelector('.loading-overlay').style.display = 'none';
@@ -808,6 +808,7 @@ function initEventListeners() {
 
 // 添加测试立方体
 function addTestCube() {
+  /* 
   console.log('添加测试立方体');
   
   try {
@@ -837,6 +838,7 @@ function addTestCube() {
   } catch (error) {
     console.error('添加测试立方体失败:', error);
   }
+  */
 }
 
 // 当DOM内容加载完成后初始化

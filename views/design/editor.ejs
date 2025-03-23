@@ -13,8 +13,109 @@
     }
   }
   </script>
+  <style>
+    /* 调试面板样式 */
+    #debug-panel {
+      position: fixed;
+      top: 70px;
+      right: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+      z-index: 9999;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    #debug-panel h3 {
+      margin: 0 0 10px 0;
+      color: #4cc9f0;
+      font-size: 14px;
+    }
+    #debug-panel .section {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #555;
+    }
+    #debug-panel .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    #debug-panel .label {
+      color: #e6ac00;
+    }
+    #debug-panel .value {
+      color: #7DF9FF;
+    }
+    #debug-panel button {
+      background: #4361ee;
+      border: none;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+    #debug-panel button:hover {
+      background: #3a56d4;
+    }
+  </style>
 </head>
 <body>
+  <!-- 调试面板 -->
+  <div id="debug-panel">
+    <h3>Three.js 调试面板</h3>
+    <div class="section">
+      <div class="item">
+        <span class="label">渲染器状态:</span>
+        <span class="value" id="debug-renderer-status">未初始化</span>
+      </div>
+      <div class="item">
+        <span class="label">场景状态:</span>
+        <span class="value" id="debug-scene-status">未初始化</span>
+      </div>
+      <div class="item">
+        <span class="label">相机状态:</span>
+        <span class="value" id="debug-camera-status">未初始化</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="item">
+        <span class="label">画布尺寸:</span>
+        <span class="value" id="debug-canvas-size">-</span>
+      </div>
+      <div class="item">
+        <span class="label">渲染尺寸:</span>
+        <span class="value" id="debug-renderer-size">-</span>
+      </div>
+      <div class="item">
+        <span class="label">窗口尺寸:</span>
+        <span class="value" id="debug-window-size">-</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="item">
+        <span class="label">场景对象数:</span>
+        <span class="value" id="debug-scene-objects">-</span>
+      </div>
+      <div class="item">
+        <span class="label">帧率:</span>
+        <span class="value" id="debug-fps">-</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="debug-resize">更新画布尺寸</button>
+      <button id="debug-toggle-wireframe">线框模式</button>
+      <button id="debug-toggle-grid">显示/隐藏网格</button>
+      <button id="debug-toggle-axes">显示/隐藏轴</button>
+    </div>
+  </div>
+
   <div class="editor-container">
     <!-- 顶部工具栏 -->
     <div class="editor-toolbar">
@@ -40,7 +141,7 @@
     
     <!-- 主编辑区 -->
     <div class="editor-main">
-      <!-- 侧边栏 -->
+      <!-- 侧边栏 (左侧) -->
       <div class="sidebar">
         <!-- 家具库 -->
         <div class="furniture-library">
@@ -68,62 +169,65 @@
       <!-- 画布容器 -->
       <div class="canvas-container">
         <canvas id="design-canvas"></canvas>
-        
-        <!-- 属性面板 -->
-        <div id="property-panel" class="property-panel">
-          <div class="panel-header">
-            <h3>属性设置</h3>
-            <button class="close-panel"><svg width="18" height="18" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+        <!-- 画布测试标记 -->
+        <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.7); padding: 5px; border-radius: 3px; pointer-events: none;">
+          画布测试区域
+        </div>
+      </div>
+      
+      <!-- 属性面板 (右侧) -->
+      <div id="property-panel" class="property-panel">
+        <div class="panel-header">
+          <h3>属性设置</h3>
+        </div>
+        <div class="panel-content">
+          <div class="property-name">
+            <h4>选中对象</h4>
+            <div id="selected-name" class="value">未选中</div>
           </div>
-          <div class="panel-content">
-            <div class="property-name">
-              <h4>选中对象</h4>
-              <div id="selected-name" class="value">未选中</div>
+          <div class="property-group">
+            <h4>位置</h4>
+            <div class="property-row">
+              <label>X:</label>
+              <input type="number" id="position-x" step="0.1">
             </div>
-            <div class="property-group">
-              <h4>位置</h4>
-              <div class="property-row">
-                <label>X:</label>
-                <input type="number" id="position-x" step="0.1">
-              </div>
-              <div class="property-row">
-                <label>Y:</label>
-                <input type="number" id="position-y" step="0.1">
-              </div>
-              <div class="property-row">
-                <label>Z:</label>
-                <input type="number" id="position-z" step="0.1">
-              </div>
+            <div class="property-row">
+              <label>Y:</label>
+              <input type="number" id="position-y" step="0.1">
             </div>
-            <div class="property-group">
-              <h4>旋转 (度)</h4>
-              <div class="property-row">
-                <label>X:</label>
-                <input type="number" id="rotation-x">
-              </div>
-              <div class="property-row">
-                <label>Y:</label>
-                <input type="number" id="rotation-y">
-              </div>
-              <div class="property-row">
-                <label>Z:</label>
-                <input type="number" id="rotation-z">
-              </div>
+            <div class="property-row">
+              <label>Z:</label>
+              <input type="number" id="position-z" step="0.1">
             </div>
-            <div class="property-group">
-              <h4>缩放</h4>
-              <div class="property-row">
-                <label>X:</label>
-                <input type="number" id="scale-x" step="0.1" min="0.1">
-              </div>
-              <div class="property-row">
-                <label>Y:</label>
-                <input type="number" id="scale-y" step="0.1" min="0.1">
-              </div>
-              <div class="property-row">
-                <label>Z:</label>
-                <input type="number" id="scale-z" step="0.1" min="0.1">
-              </div>
+          </div>
+          <div class="property-group">
+            <h4>旋转 (度)</h4>
+            <div class="property-row">
+              <label>X:</label>
+              <input type="number" id="rotation-x">
+            </div>
+            <div class="property-row">
+              <label>Y:</label>
+              <input type="number" id="rotation-y">
+            </div>
+            <div class="property-row">
+              <label>Z:</label>
+              <input type="number" id="rotation-z">
+            </div>
+          </div>
+          <div class="property-group">
+            <h4>缩放</h4>
+            <div class="property-row">
+              <label>X:</label>
+              <input type="number" id="scale-x" step="0.1" min="0.1">
+            </div>
+            <div class="property-row">
+              <label>Y:</label>
+              <input type="number" id="scale-y" step="0.1" min="0.1">
+            </div>
+            <div class="property-row">
+              <label>Z:</label>
+              <input type="number" id="scale-z" step="0.1" min="0.1">
             </div>
           </div>
         </div>
@@ -218,7 +322,7 @@
         <ol>
           <li>从左侧家具库中选择家具点击添加到场景</li>
           <li>使用工具栏中的移动、旋转工具调整家具位置</li>
-          <li>点击家具可以在右侧面板中精确调整属性</li>
+          <li>点击家具可以在左侧面板中精确调整属性</li>
           <li>完成设计后点击"保存设计"按钮保存</li>
         </ol>
         <h3>快捷键</h3>
@@ -241,5 +345,108 @@
   
   <!-- 脚本 -->
   <script type="module" src="/js/editor.js"></script>
+  
+  <!-- 调试脚本 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 设置初始调试面板状态
+      updateDebugInfo();
+      
+      // 定期更新调试信息
+      setInterval(updateDebugInfo, 1000);
+      
+      // 调试按钮事件
+      document.getElementById('debug-resize').addEventListener('click', function() {
+        if (window.renderer && window.camera) {
+          const container = document.querySelector('.canvas-container');
+          window.renderer.setSize(container.clientWidth, container.clientHeight);
+          window.camera.aspect = container.clientWidth / container.clientHeight;
+          window.camera.updateProjectionMatrix();
+          console.log('已手动更新画布尺寸', container.clientWidth, container.clientHeight);
+        }
+      });
+      
+      document.getElementById('debug-toggle-wireframe').addEventListener('click', toggleWireframe);
+      document.getElementById('debug-toggle-grid').addEventListener('click', toggleGrid);
+      document.getElementById('debug-toggle-axes').addEventListener('click', toggleAxes);
+    });
+    
+    // 更新调试信息
+    function updateDebugInfo() {
+      // 窗口尺寸
+      document.getElementById('debug-window-size').textContent = 
+        window.innerWidth + 'x' + window.innerHeight;
+      
+      // 画布尺寸
+      const canvas = document.getElementById('design-canvas');
+      if (canvas) {
+        document.getElementById('debug-canvas-size').textContent = 
+          canvas.width + 'x' + canvas.height + ' (' + 
+          canvas.clientWidth + 'x' + canvas.clientHeight + ')';
+      }
+      
+      // Three.js状态
+      if (window.renderer) {
+        document.getElementById('debug-renderer-status').textContent = '已初始化';
+        const size = window.renderer.getSize(new THREE.Vector2());
+        document.getElementById('debug-renderer-size').textContent = 
+          size.x + 'x' + size.y;
+      }
+      
+      if (window.scene) {
+        document.getElementById('debug-scene-status').textContent = '已初始化';
+        document.getElementById('debug-scene-objects').textContent = 
+          window.scene.children.length;
+      }
+      
+      if (window.camera) {
+        document.getElementById('debug-camera-status').textContent = '已初始化';
+      }
+    }
+    
+    // 切换线框模式
+    function toggleWireframe() {
+      if (!window.scene) return;
+      
+      let hasWireframe = false;
+      window.scene.traverse(function(object) {
+        if (object.isMesh) {
+          if (object.material) {
+            object.material.wireframe = !object.material.wireframe;
+            hasWireframe = object.material.wireframe;
+          }
+        }
+      });
+      
+      console.log('线框模式:', hasWireframe ? '开启' : '关闭');
+    }
+    
+    // 切换网格显示
+    function toggleGrid() {
+      if (!window.scene) return;
+      
+      const grid = window.scene.children.find(obj => obj.isGridHelper);
+      if (grid) {
+        grid.visible = !grid.visible;
+        console.log('网格显示:', grid.visible ? '开启' : '关闭');
+      }
+    }
+    
+    // 切换坐标轴显示
+    let axesHelper = null;
+    function toggleAxes() {
+      if (!window.scene) return;
+      
+      if (axesHelper) {
+        axesHelper.visible = !axesHelper.visible;
+        console.log('坐标轴显示:', axesHelper.visible ? '开启' : '关闭');
+      } else {
+        // 创建坐标轴
+        axesHelper = new THREE.AxesHelper(5);
+        window.scene.add(axesHelper);
+        console.log('已添加坐标轴');
+      }
+    }
+  </script>
 </body>
 </html> 

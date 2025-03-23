@@ -43,11 +43,31 @@ async function loadThreeJS() {
 
 // 初始化DOM元素
 function initDomElements() {
-  // 显示加载中
-  document.querySelector('.loading-overlay').style.display = 'flex';
+  // 添加调试信息
+  console.log('开始初始化DOM元素');
+  const canvas = document.getElementById('design-canvas');
+  console.log('画布元素:', canvas);
+  const canvasContainer = document.querySelector('.canvas-container');
+  console.log('画布容器:', canvasContainer);
   
-  // 隐藏属性面板
-  document.getElementById('property-panel').classList.remove('visible');
+  if (canvasContainer) {
+    console.log('画布容器尺寸:', {
+      width: canvasContainer.clientWidth,
+      height: canvasContainer.clientHeight,
+      offsetWidth: canvasContainer.offsetWidth,
+      offsetHeight: canvasContainer.offsetHeight,
+      style: canvasContainer.style.cssText
+    });
+  }
+  
+  // 显示加载中
+  const loadingOverlay = document.querySelector('.loading-overlay');
+  console.log('加载覆盖层:', loadingOverlay);
+  if (loadingOverlay) {
+    loadingOverlay.style.display = 'flex';
+  } else {
+    console.error('找不到加载覆盖层元素');
+  }
   
   console.log('编辑器脚本加载完成');
 }
@@ -56,71 +76,100 @@ function initDomElements() {
 function initEditor() {
   console.log('开始初始化编辑器');
   
-  // 创建场景
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xf0f0f0);
-  
-  // 创建相机
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
-  camera.position.set(0, 2, 3);
-  
-  // 创建渲染器
-  renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('design-canvas'),
-    antialias: true
-  });
-  renderer.setSize(
-    document.querySelector('.canvas-container').clientWidth,
-    document.querySelector('.canvas-container').clientHeight
-  );
-  renderer.shadowMap.enabled = true;
-  
-  // 初始化射线拾取器
-  raycaster = new THREE.Raycaster();
-  
-  // 添加轨道控制器
-  controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.25;
-  controls.screenSpacePanning = false;
-  controls.maxPolarAngle = Math.PI / 2;
-  
-  // 添加光源
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambientLight);
-  
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  directionalLight.position.set(5, 10, 7.5);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 2048;
-  directionalLight.shadow.mapSize.height = 2048;
-  scene.add(directionalLight);
-  
-  // 添加辅助网格
-  const gridHelper = new THREE.GridHelper(10, 10);
-  scene.add(gridHelper);
-  
-  // 创建房间结构
-  createRoom();
-  
-  // 隐藏加载中
-  document.querySelector('.loading-overlay').style.display = 'none';
-  
-  // 加载家具数据
-  loadFurnitureData();
-  
-  // 添加事件监听
-  initEventListeners();
-  
-  // 开始动画循环
-  animate();
-  
-  console.log('编辑器初始化完成');
+  try {
+    // 检查画布元素
+    const canvas = document.getElementById('design-canvas');
+    if (!canvas) {
+      throw new Error('找不到画布元素 #design-canvas');
+    }
+    console.log('画布尺寸:', {
+      width: canvas.width,
+      height: canvas.height,
+      clientWidth: canvas.clientWidth,
+      clientHeight: canvas.clientHeight,
+      style: canvas.style.cssText
+    });
+    
+    // 创建场景
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf0f0f0);
+    
+    // 创建相机
+    camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.set(0, 2, 3);
+    
+    // 创建渲染器
+    renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: true
+    });
+    
+    // 获取画布容器尺寸
+    const container = document.querySelector('.canvas-container');
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    
+    console.log('渲染器设置尺寸:', {
+      containerWidth: containerWidth,
+      containerHeight: containerHeight
+    });
+    
+    renderer.setSize(containerWidth, containerHeight);
+    renderer.shadowMap.enabled = true;
+    
+    // 初始化射线拾取器
+    raycaster = new THREE.Raycaster();
+    
+    // 添加轨道控制器
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.screenSpacePanning = false;
+    controls.maxPolarAngle = Math.PI / 2;
+    
+    // 添加光源
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(5, 10, 7.5);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    scene.add(directionalLight);
+    
+    // 添加辅助网格
+    const gridHelper = new THREE.GridHelper(10, 10);
+    scene.add(gridHelper);
+    
+    // 创建房间结构
+    createRoom();
+    
+    // 添加测试立方体
+    addTestCube();
+    
+    // 隐藏加载中
+    document.querySelector('.loading-overlay').style.display = 'none';
+    
+    // 加载家具数据
+    loadFurnitureData();
+    
+    // 添加事件监听
+    initEventListeners();
+    
+    // 开始动画循环
+    animate();
+    
+    console.log('编辑器初始化完成');
+  } catch (error) {
+    console.error('编辑器初始化错误:', error);
+    alert('初始化编辑器失败: ' + error.message);
+  }
 }
 
 // 创建房间结构
@@ -204,8 +253,18 @@ function onWindowResize() {
 // 动画循环
 function animate() {
   requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
+  
+  try {
+    // 更新控制器
+    if (controls) controls.update();
+    
+    // 渲染场景
+    if (renderer && scene && camera) {
+      renderer.render(scene, camera);
+    }
+  } catch (error) {
+    console.error('动画循环错误:', error);
+  }
 }
 
 // 加载家具数据
@@ -460,54 +519,65 @@ function selectObject(object) {
   
   selectedObject = object;
   
-  // 显示属性面板
-  showPropertyPanel();
+  // 更新属性面板
+  updatePropertyPanel();
 }
 
 // 取消选择物体
 function deselectObject() {
   selectedObject = null;
   
-  // 隐藏属性面板
-  hidePropertyPanel();
+  // 清空属性面板
+  document.getElementById('selected-name').textContent = '未选中';
+  document.getElementById('position-x').value = '';
+  document.getElementById('position-y').value = '';
+  document.getElementById('position-z').value = '';
+  document.getElementById('rotation-x').value = '';
+  document.getElementById('rotation-y').value = '';
+  document.getElementById('rotation-z').value = '';
+  document.getElementById('scale-x').value = '';
+  document.getElementById('scale-y').value = '';
+  document.getElementById('scale-z').value = '';
 }
 
-// 显示属性面板
-function showPropertyPanel() {
-  const panel = document.getElementById('property-panel');
-  panel.classList.add('visible');
-  
-  // 更新属性面板信息
-  updatePropertyPanel();
-}
-
-// 隐藏属性面板
-function hidePropertyPanel() {
-  const panel = document.getElementById('property-panel');
-  panel.classList.remove('visible');
-}
-
-// 更新属性面板信息
+// 选择对象时更新属性面板
 function updatePropertyPanel() {
-  if (!selectedObject) return;
+  const panel = document.getElementById('property-panel');
+  const nameElement = document.getElementById('selected-name');
   
-  // 更新名称
-  document.getElementById('selected-name').textContent = selectedObject.userData.name || '未命名物体';
-  
-  // 更新位置
-  document.getElementById('position-x').value = selectedObject.position.x.toFixed(2);
-  document.getElementById('position-y').value = selectedObject.position.y.toFixed(2);
-  document.getElementById('position-z').value = selectedObject.position.z.toFixed(2);
-  
-  // 更新旋转 (转换为度数)
-  document.getElementById('rotation-x').value = (selectedObject.rotation.x * 180 / Math.PI).toFixed(0);
-  document.getElementById('rotation-y').value = (selectedObject.rotation.y * 180 / Math.PI).toFixed(0);
-  document.getElementById('rotation-z').value = (selectedObject.rotation.z * 180 / Math.PI).toFixed(0);
-  
-  // 更新缩放
-  document.getElementById('scale-x').value = selectedObject.scale.x.toFixed(2);
-  document.getElementById('scale-y').value = selectedObject.scale.y.toFixed(2);
-  document.getElementById('scale-z').value = selectedObject.scale.z.toFixed(2);
+  if (selectedObject) {
+    // 只更新面板内容，不改变可见性
+    nameElement.textContent = selectedObject.userData.name || '未命名物体';
+    
+    // 更新位置数值
+    document.getElementById('position-x').value = selectedObject.position.x.toFixed(2);
+    document.getElementById('position-y').value = selectedObject.position.y.toFixed(2);
+    document.getElementById('position-z').value = selectedObject.position.z.toFixed(2);
+    
+    // 更新旋转数值 (转换为度数)
+    document.getElementById('rotation-x').value = (selectedObject.rotation.x * 180 / Math.PI).toFixed(0);
+    document.getElementById('rotation-y').value = (selectedObject.rotation.y * 180 / Math.PI).toFixed(0);
+    document.getElementById('rotation-z').value = (selectedObject.rotation.z * 180 / Math.PI).toFixed(0);
+    
+    // 更新缩放数值
+    document.getElementById('scale-x').value = selectedObject.scale.x.toFixed(2);
+    document.getElementById('scale-y').value = selectedObject.scale.y.toFixed(2);
+    document.getElementById('scale-z').value = selectedObject.scale.z.toFixed(2);
+  } else {
+    // 清空属性但保持面板可见
+    nameElement.textContent = '未选中';
+    
+    // 清空所有输入框的值
+    document.getElementById('position-x').value = '';
+    document.getElementById('position-y').value = '';
+    document.getElementById('position-z').value = '';
+    document.getElementById('rotation-x').value = '';
+    document.getElementById('rotation-y').value = '';
+    document.getElementById('rotation-z').value = '';
+    document.getElementById('scale-x').value = '';
+    document.getElementById('scale-y').value = '';
+    document.getElementById('scale-z').value = '';
+  }
 }
 
 // 添加到历史记录
@@ -703,9 +773,6 @@ function initEventListeners() {
   document.getElementById('scale-y').addEventListener('change', updateObjectScale);
   document.getElementById('scale-z').addEventListener('change', updateObjectScale);
   
-  // 关闭属性面板
-  document.querySelector('.close-panel').addEventListener('click', hidePropertyPanel);
-  
   // 分类标签切换
   const categoryTabs = document.querySelectorAll('.category-tab');
   categoryTabs.forEach(tab => {
@@ -737,6 +804,39 @@ function initEventListeners() {
       loadFurnitureData(category, search);
     }
   });
+}
+
+// 添加测试立方体
+function addTestCube() {
+  console.log('添加测试立方体');
+  
+  try {
+    // 创建一个简单的立方体
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+    const cube = new THREE.Mesh(geometry, material);
+    
+    // 设置位置
+    cube.position.set(0, 0.5, 0);
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+    
+    // 添加到场景
+    scene.add(cube);
+    
+    console.log('测试立方体添加成功');
+    
+    // 添加动画
+    function animateCube() {
+      requestAnimationFrame(animateCube);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+    }
+    
+    animateCube();
+  } catch (error) {
+    console.error('添加测试立方体失败:', error);
+  }
 }
 
 // 当DOM内容加载完成后初始化

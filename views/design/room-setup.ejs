@@ -1,0 +1,114 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="room-setup-container">
+  <header class="room-setup-header">
+    <div class="logo">BedroomStyler</div>
+    <div class="header-actions">
+      <a href="/" class="btn-secondary">返回首页</a>
+    </div>
+  </header>
+  
+  <main class="room-setup-main">
+    <div class="setup-intro">
+      <h1>开始您的房间设计</h1>
+      <p>选择一种方式创建您的房间平面图</p>
+    </div>
+    
+    <div class="setup-options">
+      <div class="option-card" id="import-option">
+        <div class="option-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+            <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/>
+          </svg>
+        </div>
+        <h2>导入户型图</h2>
+        <p>上传已有的户型图片，快速开始设计</p>
+        <button class="btn-primary option-btn">选择图片</button>
+      </div>
+      
+      <div class="option-card" id="draw-option">
+        <div class="option-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+            <path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+          </svg>
+        </div>
+        <h2>自由绘制</h2>
+        <p>使用我们的工具自由绘制房间布局</p>
+        <button class="btn-primary option-btn">开始绘制</button>
+      </div>
+      
+      <div class="option-card" id="template-option">
+        <div class="option-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+        </div>
+        <h2>使用模板</h2>
+        <p>选择预设的房间模板，快速开始</p>
+        <button class="btn-primary option-btn">浏览模板</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- 导入图片模态框 -->
+<div class="modal" id="import-modal">
+  <div class="modal-content">
+    <h2>导入户型图</h2>
+    <div class="upload-area">
+      <input type="file" id="image-upload" accept="image/*" style="display: none;">
+      <div class="upload-prompt">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+          <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <p>点击或拖拽图片到此处</p>
+        <p class="upload-hint">支持 JPG、PNG 格式</p>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="cancel-import">取消</button>
+      <button class="btn-primary" id="confirm-import" disabled>确认导入</button>
+    </div>
+  </div>
+</div>
+
+<!-- 模板选择模态框 -->
+<div class="modal" id="template-modal">
+  <div class="modal-content">
+    <h2>选择模板</h2>
+    <div class="template-grid">
+      <div class="template-item">
+        <img src="/images/room-types/bedroom.svg" alt="卧室">
+        <span>卧室</span>
+      </div>
+      <div class="template-item">
+        <img src="/images/room-types/living-room.svg" alt="客厅">
+        <span>客厅</span>
+      </div>
+      <div class="template-item">
+        <img src="/images/room-types/kitchen.svg" alt="厨房">
+        <span>厨房</span>
+      </div>
+      <div class="template-item">
+        <img src="/images/room-types/bathroom.svg" alt="浴室">
+        <span>浴室</span>
+      </div>
+      <div class="template-item">
+        <img src="/images/room-types/office.svg" alt="办公室">
+        <span>办公室</span>
+      </div>
+      <div class="template-item">
+        <img src="/images/room-types/studio.svg" alt="工作室">
+        <span>工作室</span>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="cancel-template">取消</button>
+      <button class="btn-primary" id="confirm-template" disabled>确认选择</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/room-setup.js"></script>
+
+<%- include('../partials/footer') %> 

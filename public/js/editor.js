@@ -147,11 +147,24 @@ function initEditor() {
     const gridHelper = new THREE.GridHelper(10, 10);
     scene.add(gridHelper);
     
-    // 创建房间结构
-    createRoom();
-    
-    // 添加测试立方体
-    // addTestCube(); // 注释掉测试立方体
+    // 尝试加载保存的房间设置
+    const savedRoomSettings = localStorage.getItem('roomSettings');
+    if (savedRoomSettings) {
+      try {
+        const roomConfig = JSON.parse(savedRoomSettings);
+        console.log('加载保存的房间配置:', roomConfig);
+        
+        // 根据保存的设置创建房间
+        createRoomFromSettings(roomConfig);
+      } catch (e) {
+        console.error('解析房间设置失败:', e);
+        // 使用默认设置创建房间
+        createRoom();
+      }
+    } else {
+      // 如果没有保存的设置，使用默认设置创建房间
+      createRoom();
+    }
     
     // 隐藏加载中
     document.querySelector('.loading-overlay').style.display = 'none';
@@ -170,6 +183,145 @@ function initEditor() {
     console.error('编辑器初始化错误:', error);
     alert('初始化编辑器失败: ' + error.message);
   }
+}
+
+// 根据设置创建房间
+function createRoomFromSettings(config) {
+  const length = config.length || 4;
+  const width = config.width || 3;
+  const height = config.height || 2.8;
+  const shape = config.shape || 'rectangle';
+  
+  console.log(`根据设置创建房间: 形状=${shape}, 长=${length}, 宽=${width}, 高=${height}`);
+  
+  // 创建地板
+  const floorGeometry = new THREE.PlaneGeometry(length, width);
+  const floorMaterial = new THREE.MeshStandardMaterial({
+    color: 0xeeeeee,
+    side: THREE.DoubleSide,
+    roughness: 0.8
+  });
+  room.floor = new THREE.Mesh(floorGeometry, floorMaterial);
+  room.floor.rotation.x = -Math.PI / 2;
+  room.floor.position.y = 0;
+  room.floor.receiveShadow = true;
+  room.floor.userData.isFloor = true;
+  scene.add(room.floor);
+  
+  const wallMaterial = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    side: THREE.DoubleSide,
+    roughness: 0.6
+  });
+  
+  if (shape === 'rectangle') {
+    // 创建标准矩形房间
+    
+    // 后墙
+    const backWallGeometry = new THREE.PlaneGeometry(length, height);
+    const backWall = new THREE.Mesh(backWallGeometry, wallMaterial);
+    backWall.position.set(0, height / 2, -width/2);
+    backWall.receiveShadow = true;
+    scene.add(backWall);
+    room.walls.push(backWall);
+    
+    // 左墙
+    const leftWallGeometry = new THREE.PlaneGeometry(width, height);
+    const leftWall = new THREE.Mesh(leftWallGeometry, wallMaterial);
+    leftWall.position.set(-length/2, height / 2, 0);
+    leftWall.rotation.y = Math.PI / 2;
+    leftWall.receiveShadow = true;
+    scene.add(leftWall);
+    room.walls.push(leftWall);
+    
+    // 右墙
+    const rightWallGeometry = new THREE.PlaneGeometry(width, height);
+    const rightWall = new THREE.Mesh(rightWallGeometry, wallMaterial);
+    rightWall.position.set(length/2, height / 2, 0);
+    rightWall.rotation.y = -Math.PI / 2;
+    rightWall.receiveShadow = true;
+    scene.add(rightWall);
+    room.walls.push(rightWall);
+    
+  } else if (shape === 'l-shape') {
+    // 创建L形房间
+    const mainLength = length * 0.7;
+    const mainWidth = width;
+    const extWidth = width * 0.6;
+    
+    // 主区域后墙
+    const backWallGeometry = new THREE.PlaneGeometry(length, height);
+    const backWall = new THREE.Mesh(backWallGeometry, wallMaterial);
+    backWall.position.set(0, height / 2, -width/2);
+    backWall.receiveShadow = true;
+    scene.add(backWall);
+    room.walls.push(backWall);
+    
+    // 主区域左墙
+    const leftWallGeometry = new THREE.PlaneGeometry(width, height);
+    const leftWall = new THREE.Mesh(leftWallGeometry, wallMaterial);
+    leftWall.position.set(-length/2, height / 2, 0);
+    leftWall.rotation.y = Math.PI / 2;
+    leftWall.receiveShadow = true;
+    scene.add(leftWall);
+    room.walls.push(leftWall);
+    
+    // 扩展区域右墙
+    const rightWallGeometry = new THREE.PlaneGeometry(extWidth, height);
+    const rightWall = new THREE.Mesh(rightWallGeometry, wallMaterial);
+    rightWall.position.set(length/2, height / 2, -width * 0.2);
+    rightWall.rotation.y = -Math.PI / 2;
+    rightWall.receiveShadow = true;
+    scene.add(rightWall);
+    room.walls.push(rightWall);
+    
+    // 连接墙
+    const connectWallGeometry = new THREE.PlaneGeometry(width - extWidth, height);
+    const connectWall = new THREE.Mesh(connectWallGeometry, wallMaterial);
+    connectWall.position.set(mainLength - length/2, height / 2, extWidth - width/2);
+    connectWall.rotation.y = -Math.PI / 2;
+    connectWall.receiveShadow = true;
+    scene.add(connectWall);
+    room.walls.push(connectWall);
+    
+    // 扩展区域前墙
+    const frontWallGeometry = new THREE.PlaneGeometry(length * 0.3, height);
+    const frontWall = new THREE.Mesh(frontWallGeometry, wallMaterial);
+    frontWall.position.set(length * 0.35, height / 2, extWidth - width/2);
+    frontWall.receiveShadow = true;
+    scene.add(frontWall);
+    room.walls.push(frontWall);
+    
+    // 主区域前墙
+    const frontWall1Geometry = new THREE.PlaneGeometry(mainLength, height);
+    const frontWall1 = new THREE.Mesh(frontWall1Geometry, wallMaterial);
+    frontWall1.position.set(-length * 0.15, height / 2, width/2);
+    frontWall1.receiveShadow = true;
+    scene.add(frontWall1);
+    room.walls.push(frontWall1);
+    
+    // 修改地板形状为L形
+    scene.remove(room.floor);
+    
+    const floorShape = new THREE.Shape();
+    floorShape.moveTo(-length/2, -width/2);
+    floorShape.lineTo(length/2, -width/2);
+    floorShape.lineTo(length/2, -width/2 + extWidth);
+    floorShape.lineTo(mainLength - length/2, -width/2 + extWidth);
+    floorShape.lineTo(mainLength - length/2, width/2);
+    floorShape.lineTo(-length/2, width/2);
+    floorShape.lineTo(-length/2, -width/2);
+    
+    const lFloorGeometry = new THREE.ShapeGeometry(floorShape);
+    room.floor = new THREE.Mesh(lFloorGeometry, floorMaterial);
+    room.floor.rotation.x = -Math.PI / 2;
+    room.floor.receiveShadow = true;
+    room.floor.userData.isFloor = true;
+    scene.add(room.floor);
+  }
+  
+  // 创建踢脚线
+  createSkirting();
 }
 
 // 创建房间结构

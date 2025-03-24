@@ -77,6 +77,14 @@ app.get('/design', (req, res) => {
   });
 });
 
+app.get('/room-setup', (req, res) => {
+  res.render('design/room-setup', {
+    title: '设置房间 - BedroomStyler',
+    user: null,
+    styles: ['/css/room-setup.css']
+  });
+});
+
 app.get('/gallery', (req, res) => {
   res.render('gallery', {
     title: '设计展示 - BedroomStyler',

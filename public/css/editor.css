@@ -80,6 +80,10 @@ body {
   stroke: white;
 }
 
+#edit-room-size svg {
+  stroke-width: 1.5;
+}
+
 .tools button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -330,115 +334,91 @@ svg {
 .modal {
   display: none;
   position: fixed;
-  top: 0;
+  z-index: 1000;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: var(--panel-color);
+  background-color: #ffffff;
   border-radius: 8px;
-  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 90%;
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background-color: var(--primary-color);
-  color: white;
+.modal h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.close-modal {
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-}
-
-.modal-body {
-  padding: 16px;
-  max-height: 70vh;
-  overflow-y: auto;
+.modal-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  color: #555;
   font-weight: 500;
 }
 
 .form-group input,
-.form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
+  padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  font-family: inherit;
+  font-size: 1rem;
 }
 
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.form-actions {
+.modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.btn-primary,
-.btn-secondary {
+.btn {
   padding: 8px 16px;
+  border: none;
   border-radius: 4px;
-  font-weight: 500;
   cursor: pointer;
+  font-size: 1rem;
+  background-color: #f5f5f5;
+  color: #333;
   transition: background-color 0.2s;
 }
 
+.btn:hover {
+  background-color: #eaeaea;
+}
+
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: #2196F3;
   color: white;
-  border: none;
 }
 
 .btn-primary:hover {
-  background-color: var(--secondary-color);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-}
-
-.btn-secondary:hover {
-  background-color: var(--sidebar-color);
+  background-color: #1976D2;
 }
 
 /* 加载覆盖层 */
